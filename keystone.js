@@ -44,6 +44,7 @@ keystone.init({
    + ' autolink, contextmenu, media, pagebreak,'
    + ' paste, searchreplace, wordcount',
 
+	 'signin logo': '../logo.png'
 });
 
 // Load your project's Models
