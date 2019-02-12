@@ -36,10 +36,10 @@ DuocSi.add('Thông tin trên Chứng chỉ Hành nghề', {
 });
 // TODO: Enforce the `loai` fields
 DuocSi.add('Văn Bằng Chuyên Môn', {
-	vanBang: { type: Types.Relationship, ref: 'GiayPhep', many: true, createInline: true },
+	vanBang: { type: Types.Relationship, ref: 'GiayPhep', many: true, createInline: true , label: 'Văn Bằng' },
 });
 DuocSi.add('Chứng chỉ hành nghề Dược', {
-	chungChiHanhNghe: { type: Types.Relationship, ref: 'GiayPhep', many: true, createInline: true },
+	chungChiHanhNghe: { type: Types.Relationship, ref: 'GiayPhep', many: true, createInline: true, label: 'Chứng chỉ' },
 });
 
 DuocSi.defaultColumns = 'hoTen, cmnd';
