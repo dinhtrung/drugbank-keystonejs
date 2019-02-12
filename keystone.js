@@ -44,7 +44,9 @@ keystone.init({
    + ' autolink, contextmenu, media, pagebreak,'
    + ' paste, searchreplace, wordcount',
 
-	 'signin logo': '../logo.png'
+	 'signin logo': '../logo.png',
+	 // Change '/keystone' to '/admin' for backend
+	 'admin path': 'admin',
 });
 
 // Load your project's Models
