@@ -38,5 +38,9 @@ DoanhNghiep.add('Thông tin trên Chứng chỉ Hành nghề', {
 
 });
 
+DoanhNghiep.add('Giấy Phép', {
+	giayPhep: { type: Types.Relationship, ref: 'GiayPhep', many: true, createInline: true },
+});
+
 DoanhNghiep.defaultColumns = 'maSo, ten';
 DoanhNghiep.register();

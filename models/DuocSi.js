@@ -34,6 +34,13 @@ DuocSi.add('Thông tin trên Chứng chỉ Hành nghề', {
 	hoKhau: { type: Types.Location, label: 'Nơi đăng ký hộ khẩu thường trú', note: 'Chứng chỉ hành nghề Dược' },
 	hinhAnh: { type: Types.CloudinaryImage, label: 'Hình Ảnh Sản Phẩm', note: 'Theo Tờ nhãn đăng ký Dược Sĩ' }
 });
+// TODO: Enforce the `loai` fields
+DuocSi.add('Văn Bằng Chuyên Môn', {
+	vanBang: { type: Types.Relationship, ref: 'GiayPhep', many: true, createInline: true },
+});
+DuocSi.add('Chứng chỉ hành nghề Dược', {
+	chungChiHanhNghe: { type: Types.Relationship, ref: 'GiayPhep', many: true, createInline: true },
+});
 
 DuocSi.defaultColumns = 'hoTen, cmnd';
 DuocSi.register();
