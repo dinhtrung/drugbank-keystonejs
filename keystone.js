@@ -10,7 +10,7 @@ var keystone = require('keystone');
 // and documentation.
 
 keystone.init({
-	'name': 'drugbank',
+	'name': 'drug',
 	'brand': 'drugbank',
 
 	'less': 'public',
@@ -25,6 +25,12 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
+
+	'wysiwyg images': true,
+	'wysiwyg cloudinary images': true,
+
+	'cloudinary config': 'cloudinary://774795533646193:4PTMajQluRpnGrrNw3Hebn-ntoU@foxtechvn',
+	'cookie secret': 'drugbank'
 });
 
 // Load your project's Models
@@ -46,6 +52,7 @@ keystone.set('routes', require('./routes'));
 
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
+	'thuốc': ['thuoc'],
 	posts: ['posts', 'post-categories'],
 	galleries: 'galleries',
 	enquiries: 'enquiries',
