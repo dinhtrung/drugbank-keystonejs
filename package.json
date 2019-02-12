@@ -5,7 +5,7 @@
   "dependencies": {
     "async": "2.1.4",
     "dotenv": "4.0.0",
-    "keystone": "^4.0.0",
+    "keystone": "https://github.com/dinhtrung/keystone.git#i18n/vi",
     "keystone-email": "^1.1.0",
     "keystone-storage-adapter-s3": "https://github.com/Kiina/keystone-storage-adapter-s3.git#master",
     "lodash": "^4.13.1",

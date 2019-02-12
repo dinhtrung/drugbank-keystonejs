@@ -25,6 +25,25 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
+
+	// Service Configuration
+	// 'google api key': '',
+	// 'google server api key': '',
+	// 'ga property': '',
+	// 'ga domain': '',
+
+	// Image File config
+	'cookie secret': 'drugbank.vn',
+
+	// AdminUI config: https://keystonejs.com/documentation/configuration/admin-ui-options
+	'wysiwyg images': true,
+	'wysiwyg cloudinary images': true,
+	'wysiwyg additional buttons': 'searchreplace visualchars,'
+   + ' charmap paste, forecolor backcolor ',
+  'wysiwyg additional plugins': 'table, advlist, anchor,'
+   + ' autolink, contextmenu, media, pagebreak,'
+   + ' paste, searchreplace, wordcount',
+
 });
 
 // Load your project's Models
