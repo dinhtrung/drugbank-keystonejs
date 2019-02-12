@@ -26,11 +26,24 @@ keystone.init({
 	'auth': true,
 	'user model': 'User',
 
+	// Service Configuration
+	// 'google api key': '',
+	// 'google server api key': '',
+	// 'ga property': '',
+	// 'ga domain': '',
+
+	// Image File config
+	'cookie secret': 'drugbank.vn',
+
+	// AdminUI config: https://keystonejs.com/documentation/configuration/admin-ui-options
 	'wysiwyg images': true,
 	'wysiwyg cloudinary images': true,
+	'wysiwyg additional buttons': 'searchreplace visualchars,'
+   + ' charmap paste, forecolor backcolor ',
+  'wysiwyg additional plugins': 'table, advlist, anchor,'
+   + ' autolink, contextmenu, media, pagebreak,'
+   + ' paste, searchreplace, wordcount',
 
-	'cloudinary config': 'cloudinary://774795533646193:4PTMajQluRpnGrrNw3Hebn-ntoU@foxtechvn',
-	'cookie secret': 'drugbank'
 });
 
 // Load your project's Models
