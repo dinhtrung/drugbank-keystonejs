@@ -37,7 +37,7 @@ Thuoc.add('Thông tin Chung', {
 });
 
 Thuoc.add('Hướng dẫn sử dụng', {
-	tpHoatChatChinh:  { type: Types.TextArray, label: 'Thành Phần', note: 'Hoạt / Dược chất', required: true, initial: true, note: 'Là phần Công thức hoặc Thành phần bao gồm' },
+	tpHoatChatChinh:  { type: Types.TextArray, label: 'Thành Phần', note: 'Hoạt / Dược chất', note: 'Là phần Công thức hoặc Thành phần bao gồm' },
 	tpTaDuoc:  { type: Types.TextArray, label: 'Thành Phần', note: 'Hoạt chất, dược chất, tá dược' },
 	dbcDangBaoChe: { type: String, label: 'Dạng Bào Chế', note: 'Phần Dạng bào chế hoặc được ghi cạnh tên thuốc, hoặc được ghi dưới tên thuốc.'},
 	dbcMoTa: { type: Types.Textarea, label: 'Mô Tả Dạng Bào Chế', note: 'mô tả đặc điểm bên ngoài của thuốc về màu sắc, kích thước, thể chất, hình dạng hoặc dấu hiệu bên ngoài của thuốc'},
