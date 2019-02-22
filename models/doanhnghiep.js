@@ -1,7 +1,6 @@
 var tr = require('transliteration');
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
-
 // db.doanhnghiep.findOne()
 // {
 // 	"_id" : ObjectId("5c6f9efb1bcaf136427de47d"),
@@ -26,30 +25,23 @@ var Types = keystone.Field.Types;
 
 
 var doanhNghiep = new keystone.List('doanhNghiep', {
-	schema: { collection: 'doanhnghiep' },
+	schema: { collection: 'doanh_nghiep' },
 	label: 'Doanh Nghiệp',
-	path: 'doanhnghiep',
+	path: 'doanh-nghiep',
 	singular: 'Doanh Nghiệp',
 	plural: 'Doanh Nghiệp',
 	track: true,
-	map: { name: 'display_name' }
+	map: { name: 'ten' }
 });
 
 doanhNghiep.add('Thông tin trên Chứng chỉ Hành nghề', {
-	display_name: { type: String, label: 'Tên doanh nghiệp', required: true, initial: true, note: 'Theo Đăng ký Kinh doanh' },
+	ten: { type: String, label: 'Tên doanh nghiệp', required: true, initial: true, note: 'Theo Đăng ký Kinh doanh' },
+	maSo: { type: String, label: 'Tên viết tắt', required: true, initial: true, note: 'Theo Đăng ký Kinh doanh' },
 	hinhAnh: { type: Types.CloudinaryImage, label: 'Hình Ảnh', note: 'Theo Đăng ký Kinh doanh' },
-	maSo: { type: String, label: 'Tên viết tắt', note: 'Theo Đăng ký Kinh doanh' }, // required: true, initial: true,
 	mst: { type: String, label: 'Mã Số Thuế', note: 'Theo Đăng Ký kinh doanh' },
-	dienThoai: { type: String, label: 'Điện thoại', note: 'Theo Đăng Ký kinh doanh' },
-	daiDienPhapLuat: { type: String, label: 'Đại diện pháp luật', note: 'Theo Đăng ký kinh doanh'},
-	// From the net
-	title:  { type: String, label: 'Tên doanh nghiệp', note: 'Theo Đăng ký Kinh doanh', hidden: true },
-	title_wo_accent:  { type: String, label: 'Tên doanh nghiệp', note: 'Theo Đăng ký Kinh doanh', hidden: true },
-	alt_titles: { type: Types.TextArray, label: 'Tên khác'},
 	truSo: { type: Types.Location, label: 'Trụ sở chính', note: 'Theo Đăng Ký kinh doanh' },
-	dia_chi: { type: String, label: 'Địa chỉ', note: 'Địa chỉ ghi trên tờ Hướng dẫn Sử dụng'},
-	searchable_address: { type: Types.TextArray, label: 'Địa chỉ Cơ sở Sản xuất'},
-	pub_status: { type: String, hidden: true }
+	dienThoai: { type: String, label: 'Điện thoại', note: 'Theo Đăng Ký kinh doanh' },
+	daiDienPhapLuat: { type: String, label: 'Đại diện pháp luật', note: 'Theo Đăng ký kinh doanh'}
 });
 
 doanhNghiep.schema.pre('save', function(next) {
@@ -60,5 +52,5 @@ doanhNghiep.schema.pre('save', function(next) {
   next();
 });
 
-doanhNghiep.defaultColumns = 'display_name, dia_chi';
+doanhNghiep.defaultColumns = 'ten, maSo, truSo';
 doanhNghiep.register();

@@ -1,7 +1,35 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
 
+
+// Đợt phê duyệt
+// Số thứ tự phê duyệt
+// Ngày phê duyệt
+// Hình ảnh sản phẩm bao bì
+// Tên thuốc
+// Phân loại nhóm  thuốc
+// Hoạt chất
+// Nồng độ/Hàm lượng
+// Tá dược
+// Mã ATC
+// Dạng bào chế
+//
+//
+// Quy cách đóng gói
+// Tuổi thọ
+// Tiêu chuẩn chất lượng
+// Công ty Sản xuất
+// Địa chỉ SX
+// Nước SX
+// Hướng dẫn sử dụng thuốc
+// Hướng dẫn sử dụng thuốc cho bệnh nhân
+// File_huong_dan_su_dung
+
+
 var Thuoc = new keystone.List('Thuoc', {
+	schema: {
+		collection: 'thuoc',
+	},
 	label: 'Thuốc',
 	path: 'thuoc',
 	singular: 'Thuốc',
@@ -29,41 +57,41 @@ var s3storage = new keystone.Storage({
 
 Thuoc.add('Thông tin Chung', {
 	tenThuoc: { type: String, label: 'Tên Thuốc', required: true, initial: true, note: 'Theo Tờ Hướng dẫn sử dụng. Tên thuốc không được giống nhau nếu thuốc có thành phần hoạt chất khác nhau.' },
-	hinhAnh: { type: Types.CloudinaryImage, label: 'Hình Ảnh Sản Phẩm', note: 'Theo Tờ nhãn đăng ký thuốc' },
-	soDangKy: { type: String, required: true, initial: true, label: 'Số đăng ký', note: 'Trong nước: VD – Số được cấp – năm (2 số cuối) (e.g: VD-11971-10) Nhập khẩu: VN – Số được cấp – năm (2 số cuối) (e.g: VN-20532-17) Dược liệu: Vsố được cấp – H số - năm (2 số cuối) (e.g: V46-H12-16) Gia công: GC – Số được cấp – năm (2 số cuối) (e.g: GC-243-16) Ung thư, virus, tránh thai: QLĐB – số được cấp – năm (2 số cuối) (e.g: QLĐB-531-16) '},
+	hinhAnh: { type: Types.CloudinaryImages, label: 'Hình ảnh sản phẩm bao bì', note: 'Theo Tờ nhãn đăng ký thuốc' },
+	soDangKy: { type: String, required: true, initial: true, label: 'Số đăng ký', note: 'Trong nước: VD - Số được cấp - năm (2 số cuối) (e.g: VD-11971-10) Nhập khẩu: VN – Số được cấp – năm (2 số cuối) (e.g: VN-20532-17) Dược liệu: Vsố được cấp – H số - năm (2 số cuối) (e.g: V46-H12-16) Gia công: GC – Số được cấp – năm (2 số cuối) (e.g: GC-243-16) Ung thư, virus, tránh thai: QLĐB – số được cấp – năm (2 số cuối) (e.g: QLĐB-531-16) '},
 	tinhTrang: { type: Types.Select, label: 'Tình Trạng Lưu Hành', options: [{ value: 201, label: 'Đang lưu hành' }, { value: 403, label: 'Bị đình chỉ' }, { value: 504, label: 'Ngừng Lưu Hành' }]},
-	fileHuongDan: { type: Types.File, label: 'File Hướng Dẫn Sử Dụng Gốc', storage: s3storage },
-	huongDan: {  type: Types.Html, wysiwyg: true, label: 'Hướng Dẫn Sử Dụng' }
+	phanLoai: { type: Types.Select, label: 'Phân loại nhóm  thuốc', options: [{ value: 2, label: 'Thuốc không kê đơn'}, { value: 1, label: 'Thuốc kê đơn'}]}
+});
+
+Thuoc.add('Thông tin Phê Duyệt', {
+	dotPheDuyet: { type: String, label: 'Đợt phê duyệt' },
+	soPheDuyet: {type: String, label: 'Số thứ tự phê duyệt'},
+	ngayPheDuyet: {type: Types.Date, label: 'Ngày phê duyệt' }
 });
 
 Thuoc.add('Hướng dẫn sử dụng', {
-	tpHoatChatChinh:  { type: Types.TextArray, label: 'Thành Phần', note: 'Hoạt / Dược chất', note: 'Là phần Công thức hoặc Thành phần bao gồm' },
-	tpTaDuoc:  { type: Types.TextArray, label: 'Thành Phần', note: 'Hoạt chất, dược chất, tá dược' },
-	dbcDangBaoChe: { type: String, label: 'Dạng Bào Chế', note: 'Phần Dạng bào chế hoặc được ghi cạnh tên thuốc, hoặc được ghi dưới tên thuốc.'},
-	dbcMoTa: { type: Types.Textarea, label: 'Mô Tả Dạng Bào Chế', note: 'mô tả đặc điểm bên ngoài của thuốc về màu sắc, kích thước, thể chất, hình dạng hoặc dấu hiệu bên ngoài của thuốc'},
+	fileHuongDan: { type: Types.File, label: 'File Hướng dẫn sử dụng thuốc', storage: s3storage },
+	fileHuongDanAlt: { type: Types.File, label: 'File Hướng dẫn sử dụng thuốc cho bệnh nhân', storage: s3storage },
+	huongDan: {  type: Types.Html, wysiwyg: true, label: 'Hướng dẫn sử dụng thuốc' },
+	huongDanAlt: {  type: Types.Html, wysiwyg: true, label: 'Hướng dẫn sử dụng thuốc cho bệnh nhân' }
 });
 
-Thuoc.add('Đặc tính lâm sàng', {
-	dtlsChiDinh: { type: Types.Textarea, label: 'Chỉ Định', note: 'Phần Chỉ định hoặc Nên dùng thuốc này cho bệnh gì? ' },
-	dtlsChongChiDinh: { type: Types.Textarea, label: 'Chống chỉ định', note: 'Phần Chống chỉ định hoặc Khi nào không nên dùng thuốc này?' },
-	dtlsLieuDung: { type: Types.Html, wysiwyg: true, label: 'Liều Dùng - Cách Dùng', note: 'Phần Liều dùng/ Liều lượng và cách dung/ Hướng dẫn dùng và thao tác' },
-	dtlsThanTrong: { type: Types.Html, wysiwyg: true, label: 'Thận Trọng', note: 'Phần Thận trọng hoặc Những điều cần thận trọng khi dùng thuốc này' },
-	dtlsPhuNuMangThai: { type: Types.Textarea, label: 'Phụ nữ mang thai và cho con bú', note: 'Phần Phụ nữ mang thai và cho con bú ' },
-	dtlsVanHanhTauXe: { type: Types.Textarea, label: 'Tác động của thuốc đối với người vận hành tàu xe, máy móc', note: 'Phần Sử dụng cho người lái xe và vận hành máy móc' },
-	dtlsTuongTacThuoc: { type: Types.Html, wysiwyg: true, label: 'Tương tác thuốc', note: 'Phần Tương tác/Tương kỵ với các thuốc khác hoặc Nên tránh những dùng những thuốc hoặc thực phẩm gì khi đang sử dụng thuốc này?' },
-	dtlsTacDungPhu: { type: Types.Html, wysiwyg: true, label: 'Tác dụng không mong muốn', note: 'Phần Tác dụng không mong muốn hoặc Tác dụng phụ hoặc phản ứng ngoại ý Hoặc Phản ứng bất lợi' },
-	dtlsQuaLieu: { type: Types.Html, wysiwyg: true, label: 'Quá liều – Xử trí', note: 'Phần Quá liều và Xử trí hoặc Những dấu hiệu và triệu chứng khi dùng thuốc quá liều + Cần phải làm gì khi dùng thuốc quá liều khuyến cáo' }
+Thuoc.add('Thành Phần', {
+	hoatChat: { type: Types.TextArray, label: 'Hoạt Chất', note: 'Là phần Công thức hoặc Thành phần' },
+	hamLuong: { type: Types.TextArray, label: 'Nồng Độ / Hàm Lượng', note: 'Là số và đơn vị định lượng đi kèm tên hoạt chất' },
+	taDuoc: { type: String, label: 'Tá dược', note: 'Phần Tá dược hoặc nội dung nhiều chất hóa học chữ nghiêng hoặc trong ngoặc dưới phần Hoạt chất' },
+	maAtc: { type: String, label: 'Mã ATC', note: 'Là mã chuẩn quốc tế giúp phân loại nhóm thuốc'},
+	dangBaoChe: { type: String, label: 'Dạng bào chế', note: 'Phần Dạng bào chế hoặc được ghi cạnh tên thuốc, hoặc được ghi dưới tên thuốc.'}
 });
 
-Thuoc.add('Đặc điểm Dược lý- Dược lâm sàng', {
-	dlsAtc: { type: String, label: 'Mã ATC', note: 'Là mã chuẩn quốc tế giúp phân loại nhóm thuốc'},
-	dlsNhomThuoc: { type: String, label: 'Nhóm thuốc', note: 'Phần Dươc lí/Dược động học Sau chữ nhóm thuốc dược lý/ Nhóm thuốc điều trị,… '},
-	dlsDuocLucHoc: { type: Types.Html, wysiwyg: true, label: 'Dược lực học', note: 'Phần Dược lực học Hoặc cơ chế tác dụng '},
-	dlsDuocDongHoc: { type: Types.Html, wysiwyg: true, label: 'Dược động học', note: 'Phần Dược động học'},
-	dlsTienLamSang: { label: 'Dữ liệu thử nghiệm tiền lâm sàng', type: Types.Html, wysiwyg: true, note: 'Phần an toàn tiền lâm sàng/cận lâm sang'},
-	dlsNghienCuuLamSang: { label: 'Dữ liệu thử nghiệm lâm sàng', type: Types.Html, wysiwyg: true, note: 'Phần nghiên cứu lâm sàng Hoặc Phần thử nghiệm lâm sàng '},
-	dlsDuocDongHoc: { type: Types.Html, wysiwyg: true, label: 'Lưu ý – Khuyến cáo', note: 'Phần Lưu ý hoặc Khuyến cáo. Khuyến cáo theo phân loại thuốc sẽ có yêu cầu về định dạng. Tham khảo chi tiết tại Thông tư 01/2018/BYT '}
+Thuoc.add('Khác', {
+	dongGoi: { type: String, label: 'Quy cách đóng gói'},
+	tuoiTho: { type: String, label: 'Tuổi thọ'},
+	tieuChuan: { type: String, label: 'Tiêu chuẩn chất lượng'}
 });
 
+Thuoc.add('Công ty Sản xuất', {
+	ctySx: { type: Types.Relationship, ref: 'doanhNghiep', many: false, createInline: true },
+});
 Thuoc.defaultColumns = 'tenThuoc, soDangKy, tinhTrang';
 Thuoc.register();
