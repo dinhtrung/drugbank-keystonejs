@@ -37,7 +37,7 @@ var doanhNghiep = new keystone.List('doanhNghiep', {
 doanhNghiep.add('Thông tin trên Chứng chỉ Hành nghề', {
 	ten: { type: String, label: 'Tên doanh nghiệp', required: true, initial: true, note: 'Theo Đăng ký Kinh doanh' },
 	maSo: { type: String, label: 'Tên viết tắt', required: true, initial: true, note: 'Theo Đăng ký Kinh doanh' },
-	hinhAnh: { type: Types.CloudinaryImage, label: 'Hình Ảnh', note: 'Theo Đăng ký Kinh doanh' },
+	hinhAnh: { type: Types.TextArray, label: 'Hình Ảnh', note: 'Theo Đăng ký Kinh doanh' },
 	mst: { type: String, label: 'Mã Số Thuế', note: 'Theo Đăng Ký kinh doanh' },
 	truSo: { type: Types.Location, label: 'Trụ sở chính', note: 'Theo Đăng Ký kinh doanh' },
 	dienThoai: { type: String, label: 'Điện thoại', note: 'Theo Đăng Ký kinh doanh' },

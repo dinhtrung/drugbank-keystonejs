@@ -26,6 +26,8 @@ keystone.init({
 	'auth': true,
 	'user model': 'User',
 
+	'mongo': 'mongodb://127.0.0.1:27017/mydb',
+
 	// Service Configuration
 	// 'google api key': '',
 	// 'google server api key': '',
@@ -38,6 +40,7 @@ keystone.init({
 	// AdminUI config: https://keystonejs.com/documentation/configuration/admin-ui-options
 	'wysiwyg images': true,
 	'wysiwyg cloudinary images': true,
+	'wysiwyg s3 images': true,
 	'wysiwyg additional buttons': 'searchreplace visualchars,'
    + ' charmap paste, forecolor backcolor ',
   'wysiwyg additional plugins': 'table, advlist, anchor,'
@@ -47,6 +50,15 @@ keystone.init({
 	 'signin logo': '../logo.png',
 	 // Change '/keystone' to '/admin' for backend
 	 'admin path': 'admin',
+	 's3 config': {
+		 bucket: 'drugbank',
+  	key: 'JMGUTP19W8XSTEYHW27N',
+  	secret: 'G1UTXdZw8GWUtDgpHrR+6DbgVzkPbp3DpKEfKl+0',
+  	region: undefined,
+		publicUrl: 'https://debian.soibe.xyz:9000',
+		style: 'path',
+		endpoint: 'https://debian.soibe.xyz:9000'
+	 }
 });
 
 // Load your project's Models
