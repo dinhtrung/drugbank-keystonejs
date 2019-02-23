@@ -64,13 +64,13 @@ exports = module.exports = function (app) {
   app.all('/api/counts', routes.api.counts);
 	app.get('/api/:list', initList, routes.api.list.get);
 	app.get('/api/:list/:format(export.csv|export.json)', initList, routes.api.list.download);
-	app.post('/api/:list/create', initList, routes.api.list.create);
-	app.post('/api/:list/update', initList, routes.api.list.update);
-	app.post('/api/:list/delete', initList, routes.api.list.delete);
+#	app.post('/api/:list/create', initList, routes.api.list.create);
+#	app.post('/api/:list/update', initList, routes.api.list.update);
+#	app.post('/api/:list/delete', initList, routes.api.list.delete);
 	// items
 	app.get('/api/:list/:id', initList, routes.api.item.get);
-	app.post('/api/:list/:id', initList, routes.api.item.update);
-	app.post('/api/:list/:id/delete', initList, routes.api.list.delete);
+#	app.post('/api/:list/:id', initList, routes.api.item.update);
+#	app.post('/api/:list/:id/delete', initList, routes.api.list.delete);
 	app.post('/api/:list/:id/sortOrder/:sortOrder/:newOrder', initList, routes.api.item.sortOrder);
 
 	// #6: List Routes
