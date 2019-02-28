@@ -12,6 +12,7 @@ var keystone = require('keystone');
 keystone.init({
 	'name': 'drugbank',
 	'brand': 'drugbank',
+	// 'headless': true,
 
 	'less': 'public',
 	'static': 'public',
@@ -81,9 +82,9 @@ keystone.set('routes', require('./routes'));
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
 	'Drug Bank': ['thuoc', 'duoc-si', 'doanh-nghiep'],
-	posts: ['posts', 'post-categories'],
-	galleries: 'galleries',
-	enquiries: 'enquiries',
+	// posts: ['posts', 'post-categories'],
+	// galleries: 'galleries',
+	// enquiries: 'enquiries',
 	users: 'users',
 });
 

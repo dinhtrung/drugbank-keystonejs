@@ -41,7 +41,12 @@ doanhNghiep.add('Thông tin trên Chứng chỉ Hành nghề', {
 	mst: { type: String, label: 'Mã Số Thuế', note: 'Theo Đăng Ký kinh doanh' },
 	truSo: { type: Types.Location, label: 'Trụ sở chính', note: 'Theo Đăng Ký kinh doanh' },
 	dienThoai: { type: String, label: 'Điện thoại', note: 'Theo Đăng Ký kinh doanh' },
-	daiDienPhapLuat: { type: String, label: 'Đại diện pháp luật', note: 'Theo Đăng ký kinh doanh'}
+	daiDienPhapLuat: { type: String, label: 'Đại diện pháp luật', note: 'Theo Đăng ký kinh doanh'},
+});
+// Extra metadata
+doanhNghiep.add({
+	thuoc_cnt: { type: Types.Number, label: 'Số lượng thuốc SX', note: 'Số lượng thuốc sản xuất', noedit: true },
+	extId: { type: String, hidden: true }
 });
 
 doanhNghiep.schema.pre('save', function(next) {

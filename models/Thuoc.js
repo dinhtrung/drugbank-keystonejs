@@ -58,15 +58,16 @@ var s3storage = new keystone.Storage({
 Thuoc.add('Thông tin Chung', {
 	tenThuoc: { type: String, label: 'Tên Thuốc', required: true, initial: true, note: 'Theo Tờ Hướng dẫn sử dụng. Tên thuốc không được giống nhau nếu thuốc có thành phần hoạt chất khác nhau.' },
 	hinhAnh: { type: Types.TextArray, label: 'Hình ảnh sản phẩm bao bì', note: 'Theo Tờ nhãn đăng ký thuốc' },
+	images: { type: Types.CloudinaryImages, label: 'Hình ảnh sản phẩm', note: 'Theo Tờ nhãn đăng ký thuốc' },
 	soDangKy: { type: String, required: true, initial: true, label: 'Số đăng ký', note: 'Trong nước: VD - Số được cấp - năm (2 số cuối) (e.g: VD-11971-10) Nhập khẩu: VN – Số được cấp – năm (2 số cuối) (e.g: VN-20532-17) Dược liệu: Vsố được cấp – H số - năm (2 số cuối) (e.g: V46-H12-16) Gia công: GC – Số được cấp – năm (2 số cuối) (e.g: GC-243-16) Ung thư, virus, tránh thai: QLĐB – số được cấp – năm (2 số cuối) (e.g: QLĐB-531-16) '},
-	tinhTrang: { type: Types.Select, label: 'Tình Trạng Lưu Hành', options: [{ value: 201, label: 'Đang lưu hành' }, { value: 403, label: 'Bị đình chỉ' }, { value: 504, label: 'Ngừng Lưu Hành' }]},
-	phanLoai: { type: Types.Select, label: 'Phân loại nhóm  thuốc', options: [{ value: 2, label: 'Thuốc không kê đơn'}, { value: 1, label: 'Thuốc kê đơn'}]}
+	tinhTrang: { type: Types.Select, label: 'Tình Trạng Lưu Hành', numeric: true, options: [{ value: 201, label: 'Đang lưu hành' }, { value: 403, label: 'Bị đình chỉ' }, { value: 504, label: 'Ngừng Lưu Hành' }]},
+	phanLoai: { type: Types.Select, label: 'Phân loại nhóm  thuốc', numeric: true, options: [{ value: 2, label: 'Thuốc không kê đơn'}, { value: 1, label: 'Thuốc kê đơn'}]}
 });
 
 Thuoc.add('Thông tin Phê Duyệt', {
-	dotPheDuyet: { type: String, label: 'Đợt phê duyệt' },
-	soPheDuyet: {type: String, label: 'Số thứ tự phê duyệt'},
-	ngayPheDuyet: {type: Types.Date, label: 'Ngày phê duyệt' }
+	dotPheDuyet: { type: String, label: 'Đợt phê duyệt', dependsOn: { tinhTrang: 201 }  },
+	soPheDuyet: {type: String, label: 'Số thứ tự phê duyệt', dependsOn: { tinhTrang: 201 }  },
+	ngayPheDuyet: {type: Types.Date, label: 'Ngày phê duyệt', dependsOn: { tinhTrang: 201 }  }
 });
 
 Thuoc.add('Hướng dẫn sử dụng', {
@@ -87,7 +88,8 @@ Thuoc.add('Thành Phần', {
 Thuoc.add('Khác', {
 	dongGoi: { type: String, label: 'Quy cách đóng gói'},
 	tuoiTho: { type: String, label: 'Tuổi thọ'},
-	tieuChuan: { type: String, label: 'Tiêu chuẩn chất lượng'}
+	tieuChuan: { type: String, label: 'Tiêu chuẩn chất lượng'},
+	boost: { type: Types.Number, noedit: true }
 });
 
 Thuoc.add('Công ty Sản xuất', {
